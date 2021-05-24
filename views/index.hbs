@@ -3,14 +3,19 @@
   <i class="fas fa-link fa-7x"></i>
     <div class="card-body">
       <h5 class="card-title">短網址產生器</h5>
-      <form action="/api/url/shorten" method="POST">
+      <form action="/shorten" method="POST">
         <div class="my-4">
          <input name="longUrl" type="text" class="form-control" id="url" placeholder="輸入你想縮短的網址">
         </div>
-        {{#if shortUrl}}
+        {{#if shortUrl }}
         <div class="alert alert-info" role="alert">
           <span class="mr-2">Success! Please use this link:</span>
-          <a href="{{shortUrl}}">{{shortUrl}}</a>
+          <a href="{{ shortUrl }} ">{{ shortUrl }}</a>
+        </div>
+        {{/if}}
+        {{#if wrongMsg }}
+        <div class="alert alert-info" role="alert">
+          {{ wrongMsg }}
         </div>
         {{/if}}
         <button type="submit" class="btn btn-primary">Generate</button>

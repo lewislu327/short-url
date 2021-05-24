@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: true }))
 
 // define Router
 app.use('/', require('./routes/index'))
-app.use('/api/url', require('./routes/url'))
+// app.use('/api/url', require('./routes/url'))
 
 
 app.listen(port, ()=>{
