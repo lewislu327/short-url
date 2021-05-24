@@ -2,5 +2,5 @@ POST http://localhost:3000/api/url/shorten
 Content-Type: application/json
 
 {
-  "longUrl":"https://stackoverflow.com/questions/57762864/meaning-of-argument-in-express-json-extended-false"
+  "longUrl":"https://getbootstrap.com/docs/5.0/getting-started/introduction/"
 }
