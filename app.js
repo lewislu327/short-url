@@ -16,6 +16,6 @@ app.use('/', require('./routes/index'))
 // app.use('/api/url', require('./routes/url'))
 
 
-app.listen(port, ()=>{
+app.listen(PORT, ()=>{
   console.log(`App is running on http://localhost:${PORT}`)
 })
