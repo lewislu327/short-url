@@ -1,4 +1,4 @@
 {
   "mongoURI":"mongodb+srv://root:plokij@cluster0.fl863.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", 
-  "baseUrl": "http://localhost:3000"
+  "baseUrl": "https://sheltered-sea-39891.herokuapp.com/"
 }
