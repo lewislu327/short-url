@@ -1,19 +1,18 @@
 const express = require('express')
 const app = express()
 const port = 3000
-const mongoose = require('mongoose')
-mongoose.connect('mongodb://localhost/short-url',{ useNewUrlParser: true, useUnifiedTopology: true } )
+const connectDB = require('./config/mongoose')
 
-const db = mongoose.connection
+// Connect to database
+connectDB()
 
-db.once('open', () => {
-  console.log('mongodb error')
-})
-  
-db.on('error', () => {
-  console.log('mongodb connected')
-}) 
-  
+// allow to accept json data into api
+app.use(express.json({ extended: true }))
+
+// define Router
+app.use('/', require('./routes/index'))
+app.use('/api/url', require('./routes/url'))
+
 
 app.listen(port, ()=>{
   console.log(`App is running on http://localhost:${port}`)
