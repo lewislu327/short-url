@@ -17,49 +17,44 @@ router.post('/shorten', async (req, res) => {
 
   // Check base url
   if (!validUrl.isUri(baseUrl)) {
-    return res.status(401).json('Invalid bse url')
+    return res.status(401).json('Invalid base url')
   }
-  // Create url code
-  const urlCode = nanoid(5)
-
-  // 確認長網址，防止有重覆的網址組合出現
-  if(validUrl.isUri(longUrl)) {
-    
-    const shortUrl = baseUrl + '/' + urlCode
-    try {
-      let url = await Url.findOne({ longUrl })
-
-      if(url) {
-        res.render('index', {shortUrl})
-      } else {
-        // const shortUrl = baseUrl + '/' + urlCode
-        url = new Url({
-          longUrl,
-          shortUrl,
-          urlCode,
-          date: new Date
-        })
-
-        await url.save()
-
-        res.render('index', {shortUrl})
-        
-      }
-
-    } catch (error) {
-      console.error(error)
-      res.status(500).json('Server error')
-    }
-  } else {
-      if (longUrl.length === 0) {
+  //Check long url
+  if(!validUrl.isUri(longUrl)) {
+    if (longUrl.length === 0) {
         const wrongMsg = 'There is no valid character in your input.'
-        res.render('index', {wrongMsg})
+        return res.render('index', {wrongMsg})
       } else{
         const wrongMsg = 'This is not valid URL.'
-        res.render('index', {wrongMsg}) 
+        return res.render('index', {wrongMsg}) 
       }
+  }
+   // 確認長網址，防止有重覆的網址組合出現
+  try {
+    let url = await Url.findOne({ longUrl })
+      
+    if(url) {
+      let urlCode = url.urlCode
+      let shortUrl = baseUrl + '/' + urlCode
+      res.render('index', {shortUrl})
+    } else {
+      let urlCode = nanoid(5)
+      let shortUrl = baseUrl + '/' + urlCode
+      url = new Url({
+        longUrl,
+        shortUrl,
+        urlCode,
+        date: new Date
+      })
+
+      await url.save()
+      res.render('index', {shortUrl})
     }
 
+  } catch (error) {
+    console.error(error)
+    res.status(500).json('Server error')
+  }
 })
 
 // @route Get /:code
