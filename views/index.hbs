@@ -10,7 +10,8 @@
         {{#if shortUrl }}
         <div class="alert alert-info" role="alert">
           <span class="mr-2">Success! Please use this link:</span>
-          <a href="{{ shortUrl }} ">{{ shortUrl }}</a>
+          <a href="{{ shortUrl }} " id="copy">{{ shortUrl }}</a>
+          <button type="button" class="btn btn-success" onclick="copyEvent('copy')">Copy Text</button>
         </div>
         {{/if}}
         {{#if wrongMsg }}
@@ -18,7 +19,7 @@
           {{ wrongMsg }}
         </div>
         {{/if}}
-        <button type="submit" class="btn btn-primary">Generate</button>
+        <button type="submit" class="btn btn-primary mt-3">Generate</button>
       </form>
     
     </div>
