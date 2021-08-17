@@ -1,4 +1,3 @@
 {
-  "mongoURI":"mongodb+srv://root:plokij@cluster0.fl863.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", 
-  "baseUrl": "https://sheltered-sea-39891.herokuapp.com"
+  "mongoURI":"mongodb+srv://root:plokij@cluster0.fl863.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
 }

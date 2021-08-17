@@ -1,7 +1,6 @@
 const express = require('express')
 const router = express.Router()
 const validUrl = require('valid-url')
-const config = require('config')
 const nanoid = require('nanoid')
 const Url = require('../models/Url')
 
@@ -11,8 +10,7 @@ router.get('/', (req, res) => {
 
 router.post('/shorten', async (req, res) => {
   const { longUrl } = req.body
-  const baseUrl = config.get('baseUrl')
-
+  const baseUrl = req.get('origin')
   // Check base url
   if (!validUrl.isUri(baseUrl)) {
     const wrongMsg = 'The baseUrl is not valid.'
